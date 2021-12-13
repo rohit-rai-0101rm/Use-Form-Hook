@@ -77,7 +77,7 @@ function App() {
                 ref={register({
                   required: "this field is required",
                   pattern: {
-                    value: "^d{10}$",
+                    value: /^\d{10}$/,
                     message: "please enter valid 10 digit phone number",
                   },
                 })}
@@ -99,8 +99,8 @@ function App() {
                 ref={register({
                   required: "this field is required",
                   pattern: {
-                    value: "^d{10}$",
-                    message: "please enter valid 10 digit phone number",
+                    value: /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+                    message: "Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)",
                   },
                 })}
                 name="password"
