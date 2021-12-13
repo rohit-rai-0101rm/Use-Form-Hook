@@ -112,10 +112,14 @@ function App() {
             <div className="form-group">
               <label htmlFor="state">Choose Your State</label>
               <select
-                ref={register({
-                  required: true,
+               
+                className={classNames("form-control", {
+                  "is-invalid": errors.state,
                 })}
-                className="form-control"
+                ref={register({
+                  required: "this field is required",
+                })}
+                name="state"
                 id="state"
               >
                 <option value="">--- Select Your State ---</option>
@@ -124,6 +128,9 @@ function App() {
                 <option value="Meghalaya">Meghalaya</option>
                 <option value="Punjab">Punjab</option>
               </select>
+              {errors.state && (
+                <div className="invalid-feedback">{errors.state.message}</div>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="gender" className="mr-4">
@@ -137,7 +144,7 @@ function App() {
                   value="male"
                   name="gender"
                   ref={register({
-                    required: true,
+                    required: "this field is required",
                   })}
                 />
                 <label className="form-check-label" htmlFor="male">
@@ -152,7 +159,7 @@ function App() {
                   value="female"
                   name="gender"
                   ref={register({
-                    required: true,
+                    required: "this field is required",
                   })}
                 />
                 <label className="form-check-label" htmlFor="female">
@@ -167,7 +174,7 @@ function App() {
                   value="other"
                   name="gender"
                   ref={register({
-                    required: true,
+                    required: "this field is required",
                   })}
                 />
                 <label className="form-check-label" htmlFor="other">
@@ -175,21 +182,29 @@ function App() {
                 </label>
               </div>
             </div>
+            {errors.gender && (
+                <div className="form-text text-danger">{errors.gender.message}</div>
+              )}
             <div className="form-group">
               <div className="form-check form-check-inline">
                 <input
-                  ref={register({
-                    required: true,
-                  })}
+                 
                   className="form-check-input"
                   type="checkbox"
+                  ref={register({
+                    required: "this field is required",
+                  })}
                   id="tnc"
                   name="tnc"
                 />
                 <label className="form-check-label" htmlFor="tnc">
                   I agree all terms & conditions
                 </label>
+                
               </div>
+              {errors.tnc && (
+                <div className="form-text text-danger">{errors.tnc.message}</div>
+              )}
             </div>
             <button type="submit" className="btn btn-primary">
               Create New Account
